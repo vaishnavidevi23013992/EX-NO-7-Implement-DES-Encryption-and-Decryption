@@ -13,12 +13,48 @@ To use the Data Encryption Standard (DES) algorithm for a practical application,
 
 ## Program:
 
+```
+def encrypt(message, key):
+    key_length = len(key)
+    encrypted_message = []
 
+    for i in range(len(message)):
+        encrypted_char = ord(message[i]) ^ ord(key[i % key_length])
+        encrypted_message.append(encrypted_char)
+
+    return encrypted_message
+
+def decrypt(encrypted_message, key):
+    key_length = len(key)
+    decrypted_chars = []
+
+    for i in range(len(encrypted_message)):
+        decrypted_char = encrypted_message[i] ^ ord(key[i % key_length])
+        decrypted_chars.append(chr(decrypted_char))
+
+    return ''.join(decrypted_chars)
+
+def main():
+    message = input("Enter the message to encrypt: ")
+    key = input("Enter the encryption key: ")
+
+    encrypted = encrypt(message, key)
+
+    print("Original Message:", message)
+    print("Encrypted Message:", ' '.join(f"{byte:02X}" for byte in encrypted))
+
+    decrypted = decrypt(encrypted, key)
+    print("Decrypted Message:", decrypted)
+
+if __name__ == "__main__":
+    main()
+```
 
 
 ## Output:
+![image](https://github.com/user-attachments/assets/951783c3-642d-4ce2-8ad2-e922374d089e)
 
 
 ## Result:
-  The program is executed successfully
+  The program isImplement-DES-Encryption-and-Decryption executed successfully
 
